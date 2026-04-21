@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VL Digital | Criamos Sites que Convertem</title>
+  <meta name="description" content="Agência especializada em desenvolvimento de sites, landing pages, sites institucionais e e-commerces. Transformamos sua presença digital em resultados.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --background: #0f1119; 
+      --foreground: #f8f9fa;
+      --card: #181b25;
+      --card-foreground: #f8f9fa;
+      --primary: #22c55e;
+      --primary-foreground: #0f1119;
+      --secondary: #1f222e;
+      --muted: #2a2e3d;
+      --muted-foreground: #9ca3af;
+      --border: #2a2e3d;
+      --radius: 12px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 16px 0;
+      background: rgba(15, 17, 25, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-foreground);
+      font-weight: 700;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted-foreground);
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--foreground);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--primary-foreground);
+    }
+
+    .btn-primary:hover {
+      background: #1ea84e;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--foreground);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--muted);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--foreground);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      background: var(--secondary);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--foreground);
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 160px 0 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--secondary);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 14px;
+      color: var(--muted-foreground);
+      margin-bottom: 32px;
+    }
+
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .hero-title {
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title-highlight {
+      color: var(--primary);
+    }
+
+    .hero-description {
+      font-size: 20px;
+      color: var(--muted-foreground);
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 64px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      padding-top: 64px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--muted-foreground);
+    }
+
+    /* Services */
+    .services {
+      padding: 100px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 64px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-description {
+      font-size: 18px;
+      color: var(--muted-foreground);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: all 0.3s;
+    }
+
+    .service-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+    }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--secondary);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+
+    .service-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .service-description {
+      font-size: 15px;
+      color: var(--muted-foreground);
+      margin-bottom: 20px;
+    }
+
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      transition: gap 0.2s;
+    }
+
+    .service-link:hover {
+      gap: 12px;
+    }
+
+    /* Portfolio */
+    .portfolio {
+      padding: 100px 0;
+      background: var(--card);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .portfolio-card {
+      background: var(--background);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .portfolio-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+    }
+
+    .portfolio-image {
+      height: 200px;
+      background: var(--secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+
+    .portfolio-content {
+      padding: 24px;
+    }
+
+    .portfolio-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--secondary);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .portfolio-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .portfolio-description {
+      font-size: 14px;
+      color: var(--muted-foreground);
+      margin-bottom: 16px;
+    }
+
+    .portfolio-result {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    /* Process */
+    .process {
+      padding: 100px 0;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .process-step {
+      text-align: center;
+      position: relative;
+    }
+
+    .process-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 40px;
+      right: -12px;
+      width: calc(100% - 80px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), transparent);
+    }
+
+    .process-number {
+      width: 80px;
+      height: 80px;
+      background: var(--secondary);
+      border: 2px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--primary);
+      transition: all 0.3s;
+    }
+
+    .process-step:hover .process-number {
+      border-color: var(--primary);
+      background: rgba(34, 197, 94, 0.1);
+    }
+
+    .process-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .process-description {
+      font-size: 14px;
+      color: var(--muted-foreground);
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 100px 0;
+      background: var(--card);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: var(--background);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+    }
+
+    .testimonial-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 16px;
+      color: #fbbf24;
+    }
+
+    .testimonial-text {
+      font-size: 15px;
+      color: var(--muted-foreground);
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      background: var(--secondary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .testimonial-name {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .testimonial-role {
+      font-size: 13px;
+      color: var(--muted-foreground);
+    }
+
+    /* CTA */
+    .cta {
+      padding: 100px 0;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, var(--card) 0%, var(--secondary) 100%);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .cta-content h2 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .cta-content p {
+      font-size: 18px;
+      color: var(--muted-foreground);
+      margin-bottom: 32px;
+    }
+
+    .cta-features {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cta-feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+    }
+
+    .cta-feature-icon {
+      width: 24px;
+      height: 24px;
+      background: rgba(34, 197, 94, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 12px;
+    }
+
+    .cta-form {
+      background: var(--background);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+    }
+
+    .cta-form h3 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--foreground);
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-submit {
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      padding: 64px 0 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand p {
+      font-size: 14px;
+      color: var(--muted-foreground);
+      margin-top: 16px;
+      margin-bottom: 24px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      background: var(--secondary);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted-foreground);
+      transition: all 0.2s;
+    }
+
+    .footer-social a:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .footer-title {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-link {
+      font-size: 14px;
+      color: var(--muted-foreground);
+      transition: color 0.2s;
+    }
+
+    .footer-link:hover {
+      color: var(--primary);
+    }
+
+    .footer-bottom {
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copyright {
+      font-size: 14px;
+      color: var(--muted-foreground);
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-legal a {
+      font-size: 14px;
+      color: var(--muted-foreground);
+      transition: color 0.2s;
+    }
+
+    .footer-legal a:hover {
+      color: var(--foreground);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-title {
+        font-size: 48px;
+      }
+
+      .services-grid,
+      .portfolio-grid,
+      .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 48px;
+      }
+
+      .process-step::after {
+        display: none;
+      }
+
+      .cta-box {
+        grid-template-columns: 1fr;
+        padding: 48px;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero {
+        padding: 120px 0 60px;
+      }
+
+      .hero-title {
+        font-size: 36px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+
+      .stat-value {
+        font-size: 36px;
+      }
+
+      .section-title {
+        font-size: 32px;
+      }
+
+      .services-grid,
+      .portfolio-grid,
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-box {
+        padding: 32px;
+      }
+
+      .cta-content h2 {
+        font-size: 32px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        <div class="logo-icon">VL</div>
+        <span>Digital</span>
+      </a>
+      <nav class="nav">
+        <a href="#servicos" class="nav-link">Servicos</a>
+        <a href="#portfolio" class="nav-link">Portfolio</a>
+        <a href="#processo" class="nav-link">Processo</a>
+        <a href="#depoimentos" class="nav-link">Depoimentos</a>
+        <a href="#contato" class="btn btn-primary">Solicitar Orcamento</a>
+      </nav>
+      <button class="mobile-menu-btn">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Mais de 150 projetos entregues
+        </div>
+        <h1 class="hero-title">
+          Criamos sites que <span class="hero-title-highlight">convertem visitantes</span> em clientes
+        </h1>
+        <p class="hero-description">
+          Somos especialistas em desenvolver solucoes digitais que impulsionam o crescimento do seu negocio. Landing pages, sites institucionais e e-commerces sob medida.
+        </p>
+        <div class="hero-buttons">
+          <a href="#contato" class="btn btn-primary">Comecar Projeto</a>
+          <a href="#portfolio" class="btn btn-outline">Ver Portfolio</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-value">150+</div>
+            <div class="stat-label">Projetos Entregues</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">98%</div>
+            <div class="stat-label">Clientes Satisfeitos</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">5</div>
+            <div class="stat-label">Anos de Experiencia</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">24h</div>
+            <div class="stat-label">Suporte Rapido</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services" id="servicos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Nossos Servicos</span>
+        <h2 class="section-title">Solucoes completas para sua presenca digital</h2>
+        <p class="section-description">
+          Desenvolvemos projetos personalizados que atendem as necessidades especificas do seu negocio.
+        </p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+            </svg>
+          </div>
+          <h3 class="service-title">Landing Pages</h3>
+          <p class="service-description">
+            Paginas de alta conversao focadas em capturar leads e gerar vendas para campanhas de marketing.
+          </p>
+          <a href="#contato" class="service-link">
+            Saiba mais
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12l7-7M5 5h7v7"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <h3 class="service-title">Sites Institucionais</h3>
+          <p class="service-description">
+            Sites profissionais que transmitem credibilidade e fortalecem a identidade da sua marca.
+          </p>
+          <a href="#contato" class="service-link">
+            Saiba mais
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12l7-7M5 5h7v7"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+          </div>
+          <h3 class="service-title">E-commerces</h3>
+          <p class="service-description">
+            Lojas virtuais completas e otimizadas para vender seus produtos 24 horas por dia.
+          </p>
+          <a href="#contato" class="service-link">
+            Saiba mais
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12l7-7M5 5h7v7"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <h3 class="service-title">Design UI/UX</h3>
+          <p class="service-description">
+            Interfaces intuitivas e atraentes que proporcionam a melhor experiencia ao usuario.
+          </p>
+          <a href="#contato" class="service-link">
+            Saiba mais
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12l7-7M5 5h7v7"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
+          <h3 class="service-title">Desenvolvimento</h3>
+          <p class="service-description">
+            Codigo limpo e otimizado utilizando as tecnologias mais modernas do mercado.
+          </p>
+          <a href="#contato" class="service-link">
+            Saiba mais
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12l7-7M5 5h7v7"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h3 class="service-title">Manutencao e Suporte</h3>
+          <p class="service-description">
+            Acompanhamento continuo para garantir que seu site esteja sempre atualizado e seguro.
+          </p>
+          <a href="#contato" class="service-link">
+            Saiba mais
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12l7-7M5 5h7v7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Portfolio</span>
+        <h2 class="section-title">Projetos que geram resultados</h2>
+        <p class="section-description">
+          Confira alguns dos projetos que desenvolvemos para nossos clientes.
+        </p>
+      </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <svg width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="8" y="8" width="48" height="48" rx="8"></rect>
+              <path d="M20 32h24M20 24h16M20 40h20"></path>
+            </svg>
+          </div>
+          <div class="portfolio-content">
+            <span class="portfolio-tag">Landing Page</span>
+            <h3 class="portfolio-title">TechStart</h3>
+            <p class="portfolio-description">Landing page para startup de tecnologia com foco em captacao de leads.</p>
+            <div class="portfolio-result">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              +340% em conversoes
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <svg width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="8" y="8" width="48" height="48" rx="8"></rect>
+              <circle cx="32" cy="28" r="8"></circle>
+              <path d="M20 48c0-6.627 5.373-12 12-12s12 5.373 12 12"></path>
+            </svg>
+          </div>
+          <div class="portfolio-content">
+            <span class="portfolio-tag">Site Institucional</span>
+            <h3 class="portfolio-title">Advocacia Silva</h3>
+            <p class="portfolio-description">Site institucional para escritorio de advocacia com area de blog.</p>
+            <div class="portfolio-result">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              +180% em contatos
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <svg width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="8" y="8" width="48" height="48" rx="8"></rect>
+              <circle cx="24" cy="28" r="4"></circle>
+              <circle cx="40" cy="28" r="4"></circle>
+              <path d="M20 40h24"></path>
+            </svg>
+          </div>
+          <div class="portfolio-content">
+            <span class="portfolio-tag">E-commerce</span>
+            <h3 class="portfolio-title">Moda Urbana</h3>
+            <p class="portfolio-description">Loja virtual completa para marca de roupas com integracao de pagamentos.</p>
+            <div class="portfolio-result">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              R$ 2M em vendas
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <svg width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="8" y="8" width="48" height="48" rx="8"></rect>
+              <path d="M24 20v24M40 20v24M20 28h24M20 36h24"></path>
+            </svg>
+          </div>
+          <div class="portfolio-content">
+            <span class="portfolio-tag">Landing Page</span>
+            <h3 class="portfolio-title">FitLife App</h3>
+            <p class="portfolio-description">Landing page para aplicativo de fitness com area de download.</p>
+            <div class="portfolio-result">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              50K downloads
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <svg width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="8" y="8" width="48" height="48" rx="8"></rect>
+              <path d="M20 36l8-8 8 8 8-8"></path>
+            </svg>
+          </div>
+          <div class="portfolio-content">
+            <span class="portfolio-tag">Site Institucional</span>
+            <h3 class="portfolio-title">Construtora Horizon</h3>
+            <p class="portfolio-description">Site para construtora com galeria de empreendimentos e area do cliente.</p>
+            <div class="portfolio-result">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              +250% em leads
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <svg width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="8" y="8" width="48" height="48" rx="8"></rect>
+              <circle cx="32" cy="32" r="12"></circle>
+              <path d="M32 24v8l4 4"></path>
+            </svg>
+          </div>
+          <div class="portfolio-content">
+            <span class="portfolio-tag">E-commerce</span>
+            <h3 class="portfolio-title">Relojoaria Premium</h3>
+            <p class="portfolio-description">E-commerce de luxo para relojoaria com checkout otimizado.</p>
+            <div class="portfolio-result">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              +420% em receita
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="process" id="processo">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Nosso Processo</span>
+        <h2 class="section-title">Como transformamos ideias em realidade</h2>
+        <p class="section-description">
+          Um processo estruturado para garantir a entrega de projetos de alta qualidade.
+        </p>
+      </div>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="process-number">01</div>
+          <h3 class="process-title">Descoberta</h3>
+          <p class="process-description">
+            Entendemos seu negocio, objetivos e publico-alvo para criar a estrategia ideal.
+          </p>
+        </div>
+        <div class="process-step">
+          <div class="process-number">02</div>
+          <h3 class="process-title">Design</h3>
+          <p class="process-description">
+            Criamos wireframes e layouts que refletem a identidade da sua marca.
+          </p>
+        </div>
+        <div class="process-step">
+          <div class="process-number">03</div>
+          <h3 class="process-title">Desenvolvimento</h3>
+          <p class="process-description">
+            Transformamos o design em codigo limpo, responsivo e otimizado.
+          </p>
+        </div>
+        <div class="process-step">
+          <div class="process-number">04</div>
+          <h3 class="process-title">Lancamento</h3>
+          <p class="process-description">
+            Publicamos seu projeto e oferecemos suporte continuo pos-lancamento.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="depoimentos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Depoimentos</span>
+        <h2 class="section-title">O que nossos clientes dizem</h2>
+        <p class="section-description">
+          A satisfacao dos nossos clientes e nossa maior conquista.
+        </p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg width="20" height="20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg width="20" height="20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg width="20" height="20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg width="20" height="20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg width="20" height="20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          </div>
+          <p class="testimonial-text">
+            "A VL Digital transformou completamente nossa presenca online. O novo site triplicou nossas conversoes em apenas 2 meses. Profissionais incriveis!"
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MR</div>
+            <div>
+              <div class="testimonial-name">Marcos Ribeiro</div>
+              <div class="testimonial-role">CEO, TechStart</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg width="20" height="20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg width="20" height="20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg width="20" height="20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg width="20" height="20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg width="20" height="20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          </div>
+          <p class="testimonial-text">
+            "Nosso e-commerce ficou perfeito! A equipe entendeu exatamente o que precisavamos e entregou alem das expectativas. Super recomendo!"
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AS</div>
+            <div>
+              <div class="testimonial-name">Ana Santos</div>
+              <div class="testimonial-role">Fundadora, Moda Urbana</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg width="20" height="20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg width="20" height="20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg width="20" height="20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg width="20" height="20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg width="20" height="20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          </div>
+          <p class="testimonial-text">
+            "Atendimento excepcional do inicio ao fim. O site institucional que criaram para nosso escritorio transmite exatamente a seriedade que buscavamos."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">CS</div>
+            <div>
+              <div class="testimonial-name">Carlos Silva</div>
+              <div class="testimonial-role">Socio, Advocacia Silva</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contato">
+    <div class="container">
+      <div class="cta-box">
+        <div class="cta-content">
+          <h2>Pronto para transformar sua presenca digital?</h2>
+          <p>Solicite um orcamento gratuito e descubra como podemos ajudar seu negocio a crescer online.</p>
+          <div class="cta-features">
+            <div class="cta-feature">
+              <div class="cta-feature-icon">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M2 6l3 3 5-5"></path>
+                </svg>
+              </div>
+              Orcamento gratuito e sem compromisso
+            </div>
+            <div class="cta-feature">
+              <div class="cta-feature-icon">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M2 6l3 3 5-5"></path>
+                </svg>
+              </div>
+              Resposta em ate 24 horas
+            </div>
+            <div class="cta-feature">
+              <div class="cta-feature-icon">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M2 6l3 3 5-5"></path>
+                </svg>
+              </div>
+              Suporte dedicado durante todo o projeto
+            </div>
+            <div class="cta-feature">
+              <div class="cta-feature-icon">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M2 6l3 3 5-5"></path>
+                </svg>
+              </div>
+              Garantia de satisfacao
+            </div>
+          </div>
+        </div>
+        <div class="cta-form">
+          <h3>Solicite seu orcamento</h3>
+          <form>
+            <div class="form-group">
+              <label class="form-label">Nome completo</label>
+              <input type="text" class="form-input" placeholder="Seu nome">
+            </div>
+            <div class="form-group">
+              <label class="form-label">E-mail</label>
+              <input type="email" class="form-input" placeholder="seu@email.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Telefone</label>
+              <input type="tel" class="form-input" placeholder="(00) 00000-0000">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tipo de projeto</label>
+              <select class="form-select">
+                <option value="">Selecione uma opcao</option>
+                <option value="landing">Landing Page</option>
+                <option value="institucional">Site Institucional</option>
+                <option value="ecommerce">E-commerce</option>
+                <option value="outro">Outro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mensagem</label>
+              <textarea class="form-textarea" placeholder="Conte-nos sobre seu projeto..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit">Enviar Solicitacao</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <div class="logo-icon">VL</div>
+            <span>Digital</span>
+          </a>
+          <p>Transformamos ideias em experiencias digitais memoraveis. Seu sucesso online comeca aqui.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">
+              <svg width="20" height="20" fill="currentColor">
+                <path d="M7.75 2h4.5A5.75 5.75 0 0 1 18 7.75v4.5A5.75 5.75 0 0 1 12.25 18h-4.5A5.75 5.75 0 0 1 2 12.25v-4.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v4.5a4.25 4.25 0 0 0 4.25 4.25h4.5a4.25 4.25 0 0 0 4.25-4.25v-4.5a4.25 4.25 0 0 0-4.25-4.25h-4.5ZM10 6a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm0 1.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm4.25-.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5Z"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <svg width="20" height="20" fill="currentColor">
+                <path d="M16 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h12ZM6.5 7.5h-2v7h2v-7Zm8 0h-2v3.77c0 .66-.47 1.23-1.12 1.23-.66 0-1.13-.57-1.13-1.23V7.5h-2v4.77c0 1.61 1.14 2.73 2.75 2.73 1.03 0 1.87-.5 2.25-1.15l.25.65h1v-7ZM5.5 4a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5Z"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="WhatsApp">
+              <svg width="20" height="20" fill="currentColor">
+                <path d="M10 2a8 8 0 0 1 6.9 12.03l.9 2.97-3.07-.81A8 8 0 1 1 10 2Zm0 1.5a6.5 6.5 0 1 0 2.38 12.56l.36-.14 1.81.48-.5-1.66.18-.34A6.5 6.5 0 0 0 10 3.5Zm-2.19 3.44c.17 0 .35 0 .5.02.18.02.42.07.66.5.27.5.87 2.13.95 2.28.08.16.13.34.03.54-.1.2-.15.32-.3.5-.15.17-.31.38-.45.51-.14.14-.29.29-.13.57.17.28.74 1.22 1.59 1.98 1.09.97 2.01 1.27 2.3 1.41.28.15.45.12.62-.07.16-.2.7-.82.89-1.1.19-.28.38-.23.63-.14.26.1 1.63.77 1.9.91.28.14.47.21.54.33.07.11.07.67-.16 1.31-.23.64-1.34 1.26-1.85 1.3-.46.04-1.02.06-1.65-.1a15 15 0 0 1-1.49-.55c-2.62-1.14-4.34-3.78-4.47-3.96-.13-.18-1.1-1.46-1.1-2.79 0-1.33.7-1.98.94-2.25.25-.27.54-.34.72-.34Z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Servicos</h4>
+          <div class="footer-links">
+            <a href="#servicos" class="footer-link">Landing Pages</a>
+            <a href="#servicos" class="footer-link">Sites Institucionais</a>
+            <a href="#servicos" class="footer-link">E-commerces</a>
+            <a href="#servicos" class="footer-link">Design UI/UX</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Empresa</h4>
+          <div class="footer-links">
+            <a href="#" class="footer-link">Sobre Nos</a>
+            <a href="#portfolio" class="footer-link">Portfolio</a>
+            <a href="#depoimentos" class="footer-link">Depoimentos</a>
+            <a href="#contato" class="footer-link">Contato</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Contato</h4>
+          <div class="footer-links">
+            <a href="mailto:contato@vldigital.com.br" class="footer-link">contato@vldigital.com.br</a>
+            <a href="tel:+5511999999999" class="footer-link">(11) 99999-9999</a>
+            <span class="footer-link">Sao Paulo, SP</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">2024 VL Digital. Todos os direitos reservados.</p>
+        <div class="footer-legal">
+          <a href="#">Termos de Uso</a>
+          <a href="#">Politica de Privacidade</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
